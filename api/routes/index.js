@@ -7,4 +7,8 @@ router
   .route('/hotels')
   .get(hotelsCtrl.getAllHotels);
 
+router
+  .route('/hotels/:hotelId')
+  .get(hotelsCtrl.getHotel);
+
 module.exports = router;
