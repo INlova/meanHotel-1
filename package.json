@@ -1,0 +1,28 @@
+{
+  "name": "meanHotel",
+  "version": "1.0.0",
+  "description": "hotel application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zack319/meanHotel.git"
+  },
+  "keywords": [
+    "hotel"
+  ],
+  "author": "Zakaria Jaouad",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/zack319/meanHotel/issues"
+  },
+  "dependencies": {
+    "express": "~4.15.4"
+  },
+  "devDependencies": {
+    "mocha": "~3.5.3"
+  }
+}
