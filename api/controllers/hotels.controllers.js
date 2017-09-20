@@ -1,18 +1,19 @@
 // seperate instance of the connection but has the same state and got the connection
 var dbConnection = require('../data/dbConnection.js');
 var hotelData = require('../data/hotel-data.json');
+var ObjectId = require('mongodb').ObjectId;
 
 module.exports.getAllHotels = function(req, res) {
 
 	var db = dbConnection.get();
-	
-	console.log("db", db);
 
-	console.log("GET the hotels");
-	console.log(req.query);
+	var collection = db.collection('hotels');
 
 	var offset = 0;
 	var count = 5;
+
+	//limit method returns the number of documents to be returned
+	//skip method returns how many document to skip before returning a result
 
 	if (req.query && req.query.offset) {
 		offset = parseInt(req.query.offset, 10);
@@ -22,20 +23,33 @@ module.exports.getAllHotels = function(req, res) {
 		count = parseInt(req.query.count, 10);
 	}
 
-	var returnData = hotelData.slice(offset, offset+count);
-
-	res
-	  .status(200)
-	  .json(returnData);
+	collection
+	  .find()
+	  .skip(offset)
+	  .limit(count)
+	  .toArray(function(err, docs) {
+		console.log("Found hotels", docs);
+		res
+		  .status(200)
+		  .json(docs);
+	});
 };
 
 module.exports.getHotel = function(req, res) {
-	var hotelId = req.params.hotelId
-	var hotel = hotelData[hotelId];
+	var db = dbConnection.get();
+	var collection = db.collection('hotels');
+
+	var hotelId = req.params.hotelId;
 	console.log("GET hotelId", hotelId);
-	res
-	  .status(200)
-	  .json(hotel);
+
+	collection
+	  .findOne({
+	  	_id : ObjectId(hotelId)
+	  }, function (err, doc) {
+	  	res
+		  .status(200)
+		  .json(doc);
+	  });
 };
 
 module.exports.addHotel = function(req, res) {
