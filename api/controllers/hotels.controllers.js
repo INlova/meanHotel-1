@@ -1,6 +1,13 @@
+// seperate instance of the connection but has the same state and got the connection
+var dbConnection = require('../data/dbConnection.js');
 var hotelData = require('../data/hotel-data.json');
 
 module.exports.getAllHotels = function(req, res) {
+
+	var db = dbConnection.get();
+	
+	console.log("db", db);
+
 	console.log("GET the hotels");
 	console.log(req.query);
 
