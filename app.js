@@ -1,5 +1,5 @@
 //Start the connection and keeps that state along the application
-require('./api/data/dbConnection.js').open();
+require('./api/data/db.js');
 var express = require('express');
 var app = express();
 var path = require('path');
