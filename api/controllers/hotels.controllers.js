@@ -1,13 +1,8 @@
 // seperate instance of the connection but has the same state and got the connection
-var dbConnection = require('../data/dbConnection.js');
-var hotelData = require('../data/hotel-data.json');
-var ObjectId = require('mongodb').ObjectId;
+var mongoose = require('mongoose');
+var Hotel = mongoose.model('Hotel');
 
 module.exports.getAllHotels = function(req, res) {
-
-	var db = dbConnection.get();
-
-	var collection = db.collection('hotels');
 
 	var offset = 0;
 	var count = 5;
@@ -23,29 +18,23 @@ module.exports.getAllHotels = function(req, res) {
 		count = parseInt(req.query.count, 10);
 	}
 
-	collection
+	Hotel
 	  .find()
 	  .skip(offset)
 	  .limit(count)
-	  .toArray(function(err, docs) {
-		console.log("Found hotels", docs);
-		res
-		  .status(200)
-		  .json(docs);
-	});
+	  .exec(function(err, hotels) {
+	  	console.log("Found hotels", hotels.length);
+	  	res.json(hotels);
+	  });
 };
 
 module.exports.getHotel = function(req, res) {
-	var db = dbConnection.get();
-	var collection = db.collection('hotels');
-
 	var hotelId = req.params.hotelId;
 	console.log("GET hotelId", hotelId);
 
-	collection
-	  .findOne({
-	  	_id : ObjectId(hotelId)
-	  }, function (err, doc) {
+	Hotel
+	  .findById(hotelId)
+	  .exec(function (err, doc) {
 	  	res
 		  .status(200)
 		  .json(doc);
@@ -53,9 +42,21 @@ module.exports.getHotel = function(req, res) {
 };
 
 module.exports.addHotel = function(req, res) {
+	var db = dbConnection.get();
+	var collection = db.collection('hotels');
+	var newHotel;
+
 	console.log("POST new Hotel");
-	console.log(req.body);
-	res
-	  .status(200)
-	  .json(req.body);
+
+	if (req.body && req.body.name && req.body.stars) {
+		newHotel = req.body;
+		newHotel.stars = parseInt(req.body.stars, 10);
+		collection.insertOne(newHotel, function(err, response) {
+			console.log(response.ops);
+			res
+			  .status(200)
+			  .json(response.ops);
+		});
+	}
+	
 };
