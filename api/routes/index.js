@@ -12,7 +12,7 @@ router
   .get(hotelsCtrl.getHotel);
 
 router
-  .route('/hotels/:hotelId/reviews')
+  .route('/hotels/:hotelId/new')
   .get(hotelsCtrl.getHotel);
 
 /***** Review routes *****/
