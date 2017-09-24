@@ -209,3 +209,22 @@ module.exports.updateHotel = function(req, res) {
 	});
 
 };
+
+module.exports.deleteHotel = function (req, res) {
+	var hotelId = req.params.hotelId;
+
+	Hotel
+	  .findByIdAndRemove(hotelId)
+	  .exec(function(err, hotel) {
+		if (err) {
+			res
+			  .status(404)
+			  .json(err);
+		} else {
+			console.log("Hotel deleted, id: " + hotelId);
+			res
+			  .status(204)
+			  .json();
+		}
+	  })
+}
