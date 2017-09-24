@@ -5,20 +5,18 @@ var hotelsCtrl = require('../controllers/hotels.controllers.js');
 var reviewsCtrl = require('../controllers/reviews.controllers.js');
 router
   .route('/hotels')
-  .get(hotelsCtrl.getAllHotels);
+  .get(hotelsCtrl.getAllHotels)
+  .post(hotelsCtrl.addHotel);
 
 router
   .route('/hotels/:hotelId')
   .get(hotelsCtrl.getHotel);
 
-router
-  .route('/hotels/:hotelId/new')
-  .get(hotelsCtrl.getHotel);
-
 /***** Review routes *****/
 router
   .route('/hotels/:hotelId/reviews')
-  .get(reviewsCtrl.getAllReviews);
+  .get(reviewsCtrl.getAllReviews)
+  .post(reviewsCtrl.addReview);
 
 router
   .route('/hotels/:hotelId/reviews/:reviewId')

@@ -121,22 +121,41 @@ module.exports.getHotel = function(req, res) {
 	 });
 };
 
-module.exports.addHotel = function(req, res) {
-	var db = dbConnection.get();
-	var collection = db.collection('hotels');
-	var newHotel;
-
-	console.log("POST new Hotel");
-
-	if (req.body && req.body.name && req.body.stars) {
-		newHotel = req.body;
-		newHotel.stars = parseInt(req.body.stars, 10);
-		collection.insertOne(newHotel, function(err, response) {
-			console.log(response.ops);
-			res
-			  .status(200)
-			  .json(response.ops);
-		});
+var splitArray = function (input) {
+	var output;
+	if (input && input.length > 0) {
+		output = input.split(";");
+	} else {
+		output = [];
 	}
-	
+	return output;
+};
+
+module.exports.addHotel = function(req, res) {
+	Hotel
+	  .create({
+	  	name : req.body.name,
+	  	description : req.body.description,
+	  	stars : parseInt(req.body.stars),
+	  	services : splitArray(req.body.services),
+	  	photos : req.body.photos,
+	  	currency : req.body.currency,
+	  	location : {
+	  		address : req.body.address,
+	  		coordinates : [parseFloat(req.body.lng), parseFloat(req.body.lat)]
+	  	}
+	  }, function(err, hotel) {
+	  	if (err) {
+			console.log("Error creating hotel.");
+			res
+			  .status(400)
+			  .json(err)
+		} else {
+			console.log("Created hotel", hotel);
+			res
+			  .status(201)
+			  .json(hotel);
+		}
+	  
+	 });
 };
