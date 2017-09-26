@@ -1,7 +1,7 @@
 // seperate instance of the connection but has the same state and got the connection
 var mongoose = require('mongoose');
 var Hotel = mongoose.model('Hotel');
-var ObjectId = mongoose.mongo.ObjectId;
+// var ObjectId = mongoose.mongo.ObjectId;
 
 var runGeoQuery = function (req, res) {
 	var lng = parseFloat(req.query.lng);
@@ -29,7 +29,7 @@ var runGeoQuery = function (req, res) {
 };
 
 module.exports.getAllHotels = function(req, res) {
-
+	console.log('Requested by: ' + req.user);
 	var offset = 0;
 	var count = 5;
 	var maxCount = 10;
