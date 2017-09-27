@@ -1,27 +1,24 @@
-var mongoClient = require('mongodb').MongoClient;
-var dbURL = 'mongodb://localhost:27017/meanhotel'; //mongodb://host:port/dbName
+var MongoClient = require('mongodb').MongoClient;
+var dburl = 'mongodb://localhost:27017/meanhotel';
 
-var connection = null;
+var _connection = null;
 
-var open = function () {
-	mongoClient.connect(dbURL, function(err, db) {
-		if (err) {
-			console.log("Connection to database failed.");
-			return;
-		}
-
-		connection = db;
-		console.log("Connection to database was successful");
-	});
-	//set connection
+var open = function() {
+  MongoClient.connect(dburl, function(err, db) {
+    if (err) {
+      console.log("DB connection failed");
+      return;
+    }
+    _connection = db;
+    console.log("DB connection open");
+  });
 };
 
-//get the connection and return it
-var get = function () {
-	return connection;
+var get = function() {
+  return _connection;
 };
 
 module.exports = {
-	open: open,
-	get: get
+  open : open,
+  get : get
 };

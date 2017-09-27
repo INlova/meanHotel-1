@@ -1,25 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="hotelApp">
 <head>
-	<title>Hotels</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css">
+    <base href="/"/>
+    <title>MEAN hotel</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+    <link href="css/custom.css" rel="stylesheet"/>
+
+
+    <!-- <script src=""></script>
+     <script src="bower_components/angular/angular.min.js"></script>
+     <script src="bower_components/angular-route/angular-route.js"></script>
+     <script src="js/app.js"></script>
+     <script src="js/Controllers/MainCtrl.js"></script>
+     <script src="js/Controllers/FilmCtrl.js"></script>
+     <script src="js/DataFactory/FilmFactory.js"></script>
+     <script src="js/filters/reversefilter/reverse-filter.js"></script>
+     <script src="js/filters/date-suffix/date-suffix.js"></script>-->
 </head>
-<body>
+<body ng-cloak="">
 
-	<h1>Hotels Homepage</h1>
+<mh-navigation></mh-navigation>
+<div class="container">
+    <div ng-view></div>
+    <ins class="bookingaff" data-aid="1363285" data-target_aid="1358870" data-prod="nsb" data-width="500" data-height="330" data-lang="en-US" data-currency="USD">
+    <!-- Anything inside will go away once widget is loaded. -->
+    <a href="//www.booking.com?aid=1358870">Booking.com</a>
+</ins>
+<script type="text/javascript">
+    (function(d, sc, u) {
+      var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = u + '?v=' + (+new Date());
+      p.parentNode.insertBefore(s,p);
+      })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
+</script>
+</div>
+<!--
+<h1>MEAN hotel homepage</h1>
+<div ng-init="name = 'patrick'">
+    hey <p ng-bind="name"></p>
+    {{1+2}}
+    <div ng-init=" rebels = [{name: 'Luke Skywalker', profession:'Jedi', weapon: 'lightsaber', age:19},
+    {name: 'Obi Wan Kenobi', profession:'Jedi', weapon: 'lightsaber', age:56},
+    {name: 'Han Solo', profession:'Smuggler', weapon: 'blaster', age:32},
+    {name: 'Chewbacca', profession:'pilot', weapon: 'bowcaster', age: 200}]">
+        <select ng-model="rebel" id=""
+                ng-options="rebel.name group by rebel.weapon for rebel in rebels "></select>
+        <p>you have selected: {{rebel.name}} ({{rebel.profession}})</p>
+    </div>
+</div>
+<div ng-view ></div>
+-->
 
-	<footer class="footer">
-		<div class="container">
-			<p class="test-muted text-center">
-				<a href="/" target="_blank">
-					<img src="/images/icenfire.png" height="65" alt="Hotel Web App">
-				</a>
-			</p>
-		</div>
-	</footer>
 
-	<script src="jquery/jquery-3.2.1.min.js"></script>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">
+            <a href="http://fullstacktraining.com" target="_blank"><img src="https://i.imgur.com/8uOMzYm.png"
+                                                                        height="40" alt="Full Stack Demo"/></a>
+        </p>
 
+        <p class="text-muted text-center">
+            <small>&copy; 2017 Full Stack Demo Patrick Frison</small>
+        </p>
+    </div>
+</footer>
+<script src="../node_modules/angular/angular.js"></script>
+<script src="../node_modules/angular-route/angular-route.js"></script>
+<script src="../node_modules/angular-jwt/dist/angular-jwt.js"></script>
+<script src="angular/app.js"></script>
+
+<script src="angular/hotel-list/hotel-list-controller.js"></script>
+<script src="angular/hotel-display/hotel-display-controller.js"></script>
+<script src="angular/HotelDataFactory/HotelDataFactory.js"></script>
+<script src="angular/hotel-rating/hotel-rating-directive.js"></script>
+<script src="angular/register/registercontroller.js"></script>
+<script src="angular/navigation-directive/navigation-directive.js"></script>
+<script src="angular/login/LoginController.js"></script>
+<script src="angular/auth/auth-factory.js"></script>
+<script src="angular/auth/auth-interceptor.js"></script>
 </body>
 </html>

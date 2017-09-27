@@ -1,17 +1,5 @@
-# meanHotel
-MEAN Stack Hotel application
+# MEAN stack app
 
-#1 Dependencies
-	- nodeJS
-	- npm
-	- MongoDB
+This repo contains the MEAN stack application that is built through  Full Stack Training's MEAN Stack course.
 
-#2 Getting Started
-
--> Clone the repository https://github.com/zack319/meanHotel.git
--> cd into the repository and run the command line "npm install".
-	- This will install the dependencies in package.json
-	- If you need to populate your database, run the command mongoimport --db "databaseName" --collection "collectionName" --jsonArray "api/data/hotel-data.json"
-	- Remember that the json offered is only a sample json. If you want more, please refer to other hotels and travel third part APIs
-	- Run the command line "npm start" to start the application
-	- In your browser, navigate to localhost:3000/
+Don't forget to run `npm install` to install the dependencies!# Hotel mean stack
