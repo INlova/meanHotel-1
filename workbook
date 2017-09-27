@@ -1,0 +1,12 @@
+Method		URL						Action
+GET			/api/hotels				Get all/multiple hotels
+POST		/api/hotels				Create a new hotel
+GET 		/api/hotels/x			Get a specific hotel
+PUT			/api/hotels/x			Update a specific hotel
+DELETE		/api/hotels/x			Delete specifuc hotel
+
+GET 		/api/hotels/x/reviews	Get all reviews for hotel
+POST		/api/hotels/x/reviews	Get review for hotel
+GET			/api/hotels/x/reviews/x'
+PUT			/api/hotels/x/reviews/x'
+DELETE 		/api/hotels/x/reviews/x'
